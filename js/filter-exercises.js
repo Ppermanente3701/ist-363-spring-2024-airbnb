@@ -46,3 +46,15 @@ const filteredCars = cars.filter((car) => {
 }); // end of filter
 
 // fetch, process, filter only games in february, Print result to the console.
+
+Promise.all([
+  fetch('js/schedule.json').then((response) => response.json()),
+]).then(([schedule]) => {
+  // console.log({ schedule });
+  const februaryGames = schedule.filter((game) => {
+    // write your code here
+    const dateObj = new Date(game.date); // convert the date string to a Date object
+    return dateObj.getMonth() === 1; // February is the second month, so the index is 1, January is 0, March is 2, April is 3, etc.
+  });
+  console.log(februaryGames);
+});

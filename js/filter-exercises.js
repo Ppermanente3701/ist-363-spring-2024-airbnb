@@ -7,11 +7,11 @@ const numbers = [
 ];
 
 // include only numbers that are less than 10
-const filteredNumbers = numbers.filter((number) => {
-  return number < 10;
-}); // end of filer
+// const filteredNumbers = numbers.filter((number) => {
+//   return number < 10;
+// }); // end of filer
 
-console.log({ filteredNumbers });
+// console.log({ filteredNumbers });
 
 // example 2
 
@@ -24,11 +24,11 @@ const people = [
   { name: 'Martha', age: 27 },
 ];
 
-const filteredPeople = people.filter((person) => {
-  return person.age < 30;
-});
+// const filteredPeople = people.filter((person) => {
+//   return person.age < 30;
+// });
 
-console.log({ filteredPeople });
+// console.log({ filteredPeople });
 
 // example 3
 
@@ -41,20 +41,41 @@ const cars = [
   { make: 'Chevrolet', model: 'Impala', year: 2014 },
 ];
 
-const filteredCars = cars.filter((car) => {
-  return car.make === 'Ford';
-}); // end of filter
+// const filteredCars = cars.filter((car) => {
+//   return car.make === 'Ford';
+// }); // end of filter
 
 // fetch, process, filter only games in february, Print result to the console.
 
-Promise.all([
-  fetch('js/schedule.json').then((response) => response.json()),
-]).then(([schedule]) => {
-  // console.log({ schedule });
-  const februaryGames = schedule.filter((game) => {
-    // write your code here
-    const dateObj = new Date(game.date); // convert the date string to a Date object
-    return dateObj.getMonth() === 1; // February is the second month, so the index is 1, January is 0, March is 2, April is 3, etc.
+// Promise.all([
+//   fetch('js/schedule.json').then((response) => response.json()),
+// ]).then(([schedule]) => {
+//   // console.log({ schedule });
+//   const februaryGames = schedule.filter((game) => {
+//     // write your code here
+//     const dateObj = new Date(game.date); // convert the date string to a Date object
+//     return dateObj.getMonth() === 1; // February is the second month, so the index is 1, January is 0, March is 2, April is 3, etc.
+//   });
+//   console.log({ februaryGames });
+// });
+
+// example 4
+const filterGames = (games, monthIndex) => {
+  const filteredGames = games.filter((game) => {
+    const dateObject = new Date(game.date);
+    return dateObject.getMonth() === monthIndex;
   });
-  console.log(februaryGames);
-});
+  console.log({ filteredGames });
+};
+// import schedule.json
+// then convert to json
+// then do something with it
+fetch('js/schedule.json')
+  .then((response) => {
+    return response.json();
+  })
+  .then((data) => {
+    // console.log({ data });
+    filterGames(data, 1);
+  })
+  .catch(); // promise

@@ -3,14 +3,15 @@
 const menuBtn = document.getElementById('menuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const closeBtn = document.getElementById('closeBtn');
+const contentDiv = document.getElementById('content');
 
 // "event name", callback function
-menuBtn.addEventListener('click', function () {
+menuBtn.addEventListener('click', () => {
   // console.log("clicked!")
   mobileMenu.classList.add('active');
 }); // end of menuBtn click
 
-closeBtn.addEventListener('click', function () {
+closeBtn.addEventListener('click', () => {
   // console.log("clicked!")
   mobileMenu.classList.remove('active');
 }); // end of menuBtn click
@@ -56,10 +57,11 @@ const displayCategory = (category, properties) => {
 
   // console.log(category.label.singular);
   // filter properties
-  const filteredProperties = properties.filter((property) => {
-    // return true or false
-    return category.label.singular === property.type;
-  });
+  const filteredProperties = properties.filter(
+    (property) =>
+      // return true or false
+      category.label.singular === property.type
+  );
 
   filteredProperties.sort((a, b) => {
     if (a.name < b.name) {
@@ -79,7 +81,7 @@ const displayCategory = (category, properties) => {
     const propertyTitle = document.createElement('h3');
     propertyTitle.classList.add('property--title');
 
-    let propertyHtml = `
+    const propertyHtml = `
       <h3 class="property--title">${property.name}</h3>
       <p class="property--description">${property.description}</p>
       <p class="property--price">${property.price}</p>
@@ -92,7 +94,7 @@ const displayCategory = (category, properties) => {
 
   // loop & append properties
 
-  document.body.appendChild(sectionElement);
+  contentDiv.appendChild(sectionElement);
 }; // end of displayCategory
 
 Promise.all([

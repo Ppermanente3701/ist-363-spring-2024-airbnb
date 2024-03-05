@@ -50,10 +50,13 @@ const displayCategory = (category, properties) => {
   const sectionElement = document.createElement('section');
   sectionElement.classList.add('category');
 
+  const containerDiv = document.createElement('div');
+  containerDiv.classList.add('container');
+
   const sectionTitle = document.createElement('h2');
   sectionTitle.textContent = category.label.plural;
 
-  sectionElement.appendChild(sectionTitle);
+  containerDiv.appendChild(sectionTitle);
 
   // console.log(category.label.singular);
   // filter properties
@@ -89,11 +92,11 @@ const displayCategory = (category, properties) => {
 
     articleElement.innerHTML = propertyHtml;
 
-    sectionElement.appendChild(articleElement);
+    containerDiv.appendChild(articleElement);
   }); // end of forEach()
 
   // loop & append properties
-
+  sectionElement.appendChild(containerDiv);
   contentDiv.appendChild(sectionElement);
 }; // end of displayCategory
 
